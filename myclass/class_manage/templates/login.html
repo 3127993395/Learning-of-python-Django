@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.css' %}">
+    <style>
+        .account {
+            width: 400px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            box-shadow: 5px 5px 20px #aaa;
+
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 200px;
+            padding: 20px 40px;
+        }
+
+        .account h1 {
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="account">
+    <h1>用户登录</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+            <label>用户名</label>
+            {{ form.username }}
+            <span style="color: red">{{ form.username.errors.0 }}</span>
+        </div>
+        <div class="form-group">
+            <label>密码</label>
+            {{ form.password }}
+            <span style="color: red">{{ form.password.errors.0 }}</span>
+        </div>
+        <div class="form-group">
+            <label>图片验证码</label>
+            <div class="row">
+                <div class="col-lg-7">
+                    {{ form.code }}
+                    <span style="color: red">{{ form.code.errors.0 }}</span>
+                </div>
+                <div class="col-lg-5">
+                    <img id="image-code" src="/image/code/" style="width: 125px;">
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="登 录" class="btn btn-primary">
+    </form>
+</div>
+
+</body>
+</html>

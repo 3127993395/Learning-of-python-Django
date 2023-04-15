@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <style>
+    a{
+        text-decoration: none;
+    }
+    </style>
+    <div>
+        <div class="container">
+            <div style="margin-bottom: 10px">
+                <a class="btn btn-success" href="/student/add/">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                    新建学生
+                </a>
+
+
+                <div style="float: right;width: 300px">
+                    <form method="get">
+                        <div class="input-group">
+                            <form method="get">
+                                <input type="text" name="q" class="form-control" placeholder="Search for..."
+                                       value="{{ search_data }}">
+                                <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                            </span>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    学生列表
+                </div>
+                <div class="panel-heading">
+                    <span aria-hidden="true"></span>
+                    <a href="/task/list/">当前班级课表</a>
+                </div>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>电话号码</th>
+                        <th>宿舍</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for obj in queryset %}
+                        <tr>
+                            <th>{{ obj.id }}</th>
+                            <td>{{ obj.number }}</td>
+                            <td>{{ obj.name }}</td>
+                            <td>{{ obj.get_gender_display }}</td>
+                            <td>{{ obj.phone_number }}</td>
+                            <td>{{ obj.dormitory_number }}</td>
+                            <td>
+                                <a class="btn btn-primary btn-xs" href="/student/{{ obj.id }}/edit/">
+                                    <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>编辑
+                                </a>
+                                <a class="btn btn-danger btn-xs" href="/student/delete/?nid={{ obj.id }}">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>删除
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination">
+                {{ page_string }}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

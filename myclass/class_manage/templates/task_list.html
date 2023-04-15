@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                    课表
+                </div>
+            </div>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>时间</th>
+                        <th>周一</th>
+                        <th>周二</th>
+                        <th>周三</th>
+                        <th>周四</th>
+                        <th>周五</th>
+                        <th>周六</th>
+                        <th>周日</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for obj in queryset %}
+                        <tr>
+                            <th>{{ obj.id }}</th>
+                            <td>{{ obj.time }}</td>
+                            <td>{{ obj.monday }}</td>
+                            <td>{{ obj.tuesday }}</td>
+                            <td>{{ obj.wednesday }}</td>
+                            <td>{{ obj.thursday }}</td>
+                            <td>{{ obj.friday }}</td>
+                            <td>{{ obj.sunday }}</td>
+                            <td>{{ obj.saturday }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

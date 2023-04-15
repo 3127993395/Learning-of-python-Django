@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xiaomi</title>
+    <style>
+
+        html {
+            font-family: sans-serif;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .sep {
+            margin: 0 .3em;
+            color: #424242;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .header {
+            background-color: #333;
+        }
+
+        .header .menu {
+            float: left;
+            color: #b0b0b0;
+        }
+
+        .header .menu a {
+            text-decoration: none
+        }
+
+        .header .menu a:hover {
+            color: white;
+        }
+
+        .header .account {
+            float: right;
+            color: #b0b0b0;
+        }
+
+        .header .account a:hover {
+            color: white;
+        }
+
+        .header .account a {
+            text-decoration: none;
+        }
+
+        .container {
+            width: 1226px;
+            margin: 0 auto;
+        }
+
+        .header a {
+            color: #b0b0b0;
+            line-height: 40px;
+            display: inline-block;
+            font-size: 12px;
+        }
+
+        .sub-header {
+            height: 100px;
+            background-color: #fff;
+        }
+
+        .sub-header .logo {
+            width: 234px;
+            float: left;
+        }
+
+        .sub-header .logo a {
+            margin-top: 22px;
+            display: inline-block
+        }
+
+        .sub-header .logo img {
+            height: 56px;
+            width: 56px
+        }
+
+        .sub-header .menu_list {
+            float: left;
+            line-height: 100px;
+        }
+
+        .sub-header .menu_list a {
+            padding: 0 10px;
+            display: inline-block;
+            color: #333;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .sub-header .menu_list a:hover {
+            color: #ff6700;
+        }
+
+        .sub-header .search {
+            float: left;
+        }
+
+        .ht {
+            height: 100px;
+        }
+
+        .slider .sd-img {
+            width: 1226px;
+            height: 460px;
+        }
+
+        .news {
+            margin-top: 14px;
+        }
+
+        .news .channel {
+            width: 228px;
+            height: 164px;
+            padding: 3px;
+            background: #5f5750;
+        }
+
+        .news .channel .item {
+            width: 72px;
+            height: 82px;
+            float: left;
+            text-align: center;
+        }
+
+        .news .channel .item a {
+            display: inline-block;
+            font-size: 12px;
+            padding-top: 18px;
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+        }
+
+        .news .channel .item a:hover {
+            opacity: 1
+        }
+
+        .news .channel .item img {
+            width: 24px;
+            height: 24px;
+            display: block;
+            margin: 0 auto 4px;
+        }
+
+        .news .list_item {
+            width: 316px;
+            height: 170px;
+        }
+
+        .back {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border: 1px solid red;
+            right: 10px;
+            bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="menu" style="font-size: 12px">
+            <a href="https://www.mi.com/">小米官网</a>
+            <span class="sep">|</span>
+            <a href="https://www.mi.com/shop">小米商城</a>
+            <span class="sep">|</span>
+            <a href="https://home.miui.com/">MIUI</a>
+            <span class="sep">|</span>
+            <a href="https://iot.mi.com/">loT</a>
+            <span class="sep">|</span>
+            <a href="https://i.mi.com/">云服务</a>
+            <span class="sep">|</span>
+            <a href="https://airstar.com/home">天星数科</a>
+            <span class="sep">|</span>
+            <a href="https://www.xiaomiyoupin.com/">有品</a>
+            <span class="sep">|</span>
+            <a href="https://xiaoai.mi.com/">小爱开放平台</a>
+            <span class="sep">|</span>
+            <a href="https://qiye.mi.com/">企业团购</a>
+            <span class="sep">|</span>
+            <a href="https://www.mi.com/shop/aptitude/list?id=88">资质证照</a>
+            <span class="sep">|</span>
+            <a href="https://www.mi.com/shop/aptitude/list">协议规则</a>
+            <span class="sep">|</span>
+            <a href="https://www.mi.com/appdownload">下载app</a>
+            <span class="sep">|</span>
+            <a>Select Location</a>
+        </div>
+        <div class="account">
+            <a href="https://account.xiaomi.com/fe/service/login/password?_qrsize=180&sid=mi_eshop&qs=%253Fcallback%253Dhttp%25253A%25252F%25252Forder.mi.com%25252Flogin%25252Fcallback%25253Ffollowup%25253Dhttps%2525253A%2525252F%2525252Fwww.mi.com%2525252Fshop%252526sign%25253DODA5NjU3ZjZkYjkxMWE3ZjVkYTE5M2MxMDNlYmJkYzJhZGFjNzBhYg%25252C%25252C%2526sid%253Dmi_eshop%2526_qrsize%253D180&callback=http%3A%2F%2Forder.mi.com%2Flogin%2Fcallback%3Ffollowup%3Dhttps%253A%252F%252Fwww.mi.com%252Fshop%26sign%3DODA5NjU3ZjZkYjkxMWE3ZjVkYTE5M2MxMDNlYmJkYzJhZGFjNzBhYg%2C%2C&_sign=yBTYxCh0uB6YSglhQfg4uoP%2BRz4%3D&serviceParam=%7B%22checkSafePhone%22%3Afalse%2C%22checkSafeAddress%22%3Afalse%2C%22lsrp_score%22%3A0.0%7D&showActiveX=false&theme=&needTheme=false&bizDeviceType=&_locale=en">登录</a>
+            <a href="https://cn.account.xiaomi.com/fe/service/register?source=&region=CN&sid=mi_eshop&qs=sid%3Dmi_eshop&callback=https%3A%2F%2Forder.mi.com%2Flogin%2Fcallback&_locale=en&_uRegion=CN">注册</a>
+            <a href="https://account.xiaomi.com/fe/service/login/password?_qrsize=180&sid=mi_eshop&qs=%253Fcallback%253Dhttp%25253A%25252F%25252Forder.mi.com%25252Flogin%25252Fcallback%25253Ffollowup%25253Dhttps%2525253A%2525252F%2525252Fwww.mi.com%2525252Fshop%2525252Fuser%2525252Fmessage%252526sign%25253DNWEyM2RjNDA4N2ZjNjFkYTY3MTg3MjY3ZjEzZmQ4NjAyYzk3YTEwNQ%25252C%25252C%2526sid%253Dmi_eshop%2526_qrsize%253D180&callback=http%3A%2F%2Forder.mi.com%2Flogin%2Fcallback%3Ffollowup%3Dhttps%253A%252F%252Fwww.mi.com%252Fshop%252Fuser%252Fmessage%26sign%3DNWEyM2RjNDA4N2ZjNjFkYTY3MTg3MjY3ZjEzZmQ4NjAyYzk3YTEwNQ%2C%2C&_sign=OBk4N5xlCQEIlmLx%2F1B%2FIZ0kiEY%3D&serviceParam=%7B%22checkSafePhone%22%3Afalse%2C%22checkSafeAddress%22%3Afalse%2C%22lsrp_score%22%3A0.0%7D&showActiveX=false&theme=&needTheme=false&bizDeviceType=&_locale=en">消息通知</a>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</div>
+
+<div class="sub-header">
+    <div class="container">
+        <div class="logo ht">
+
+            <a href="https://www.mi.com/">
+                <img src="/static/logo-mi2.png" alt="">
+            </a>
+
+        </div>
+        <div class="menu_list ht">
+            <a href="https://www.mi.com/shop/buy/detail?product_id=17972">Xiaomi手机</a>
+            <a href="https://www.mi.com/shop/buy/detail?product_id=18119">Redmi手机</a>
+            <a href="https://www.mi.com/shop/buy/detail?product_id=15100">电视</a>
+            <a href="https://www.mi.com/shop/buy/detail?product_id=18167">笔记本</a>
+            <a href="https://www.mi.com/shop/buy/detail?product_id=15948">家电</a>
+            <a href="https://www.mi.com/shop/buy/detail?product_id=14538">路由器</a>
+            <a href="https://www.mi.com/service">服务中心</a>
+            <a href="https://www.xiaomi.cn/">社区</a>
+        </div>
+        <div class="search ht"></div>
+        <div class="clear:both"></div>
+    </div>
+</div>
+
+<div class="slider">
+    <div class="container">
+        <div class="sd-img">
+            <img src="/static/f2068e41564a00e0f4c2ad29e8b61a07.jpg" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="news">
+    <div class="container">
+        <div class="channel left">
+            <div class="item">
+                <a href="https://api.jr.mi.com/activity/scene/scenePCsearch.html?from=search">
+                    <img src="/static/82abdba456e8caaea5848a0cddce03db.png" alt="">
+                    <span>保障服务</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="https://qiye.mi.com/">
+                    <img src="/static/806f2dfb2d27978e33fe3815d3851fa3.png" alt="">
+                    <span>企业团购</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="https://www.mi.com/shop/order/fcode">
+                    <img src="/static/eded6fa3b897a058163e2485532c4f10.png" alt="">
+                    <span>F码通道</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="https://10046.mi.com/">
+                    <img src="/static/43a3195efa6a3cc7662efed8e7abe8bf.png" alt="">
+                    <span>米粉卡</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="https://www.mi.com/a/h/16769.html">
+                    <img src="/static/f4846bca6010a0deb9f85464409862af.png" alt="">
+                    <span>以旧换新</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="https://account.xiaomi.com/fe/service/login/password?_locale=en&sid=recharge&qs=%253Fcallback%253Dhttp%25253A%25252F%25252Frecharge.10046.mi.com%25252Fsts%25253Fsign%25253DbC%2525252Bk1yrraTJbriZ0UbiV7hfzHz4%2525253D%252526followup%25253Dhttp%2525253A%2525252F%2525252Frecharge.10046.mi.com%2525252F%2526sid%253Drecharge%2526_locale%253Den&callback=http%3A%2F%2Frecharge.10046.mi.com%2Fsts%3Fsign%3DbC%252Bk1yrraTJbriZ0UbiV7hfzHz4%253D%26followup%3Dhttp%253A%252F%252Frecharge.10046.mi.com%252F&_sign=Y44o2vOWWNHpvKNcYQNLGDiwwJY%3D&serviceParam=%7B%22checkSafePhone%22%3Afalse%2C%22checkSafeAddress%22%3Afalse%2C%22lsrp_score%22%3A0.0%7D&showActiveX=false&theme=&needTheme=false&bizDeviceType=">
+                    <img src="/static/9a76d7636b08e0988efb4fc384ae497b.png" alt="">
+                    <span>话费充值</span>
+                </a>
+            </div>
+            <div class="clear:both"></div>
+        </div>
+        <div class="list_item left" style="margin-left: 14px">
+            <img src="/static/0cf5e958bc88727b50c5c5fba7a8f47a.jpg" alt="">
+        </div>
+        <div class="list_item left" style="margin-left: 15px">
+            <img src="/static/6dd2f3e0de4e6cbba98fd3799cfa5bf7.jpg" alt="">
+        </div>
+        <div class="list_item left" style="margin-left: 15px">
+            <img src="/static/d7d4be1a9e701e16de498f89b1865867.jpg" alt="">
+        </div>
+        <div class="clear:both"></div>
+    </div>
+</div>
+
+<div class="back">
+    <div></div>
+    <div></div>
+</div>
+</body>
+</html>
