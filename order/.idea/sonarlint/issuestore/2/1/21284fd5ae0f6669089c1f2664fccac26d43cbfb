@@ -1,0 +1,5 @@
+
+python:S117%"^Rename this local variable "clientProfile" to match the regular expression ^[_a-z][a-z0-9_]*$.(½»ˆàúÿÿÿÿ8ÛÙâ1
+zpython:S117"\Rename this local variable "httpProfile" to match the regular expression ^[_a-z][a-z0-9_]*$.(¡Æáñ8İÙâ1
+<python:S125"Remove this commented out code.(‰Ø±C8ŞÙâ1
+Bpython:S125R"Remove this commented out code.(…Ùêıùÿÿÿÿ8ßÙâ1

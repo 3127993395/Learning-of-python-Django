@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block css %}
+    <style>
+        .top-message-error {
+            position: fixed;
+            width: 400px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            top: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <div class="top-message-error">
+            {% for obj in messages %}
+                <div class="alert alert-{{ obj.level_tag }}">
+                    {{ obj.message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+    <div style="margin-bottom: 5px">
+        <a href="{% url 'order_add' %}" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus-sign"></span>创建订单
+        </a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>订单号</td>
+            <td>视频地址</td>
+            <td>数量</td>
+            <td>价格</td>
+            <td>原播放量</td>
+            <td>创建时间</td>
+            <td>订单状态</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in pager.queryset %}
+            <tr>
+                <td>{{ row.oid }}</td>
+                <td>{{ row.url }}</td>
+                <td>{{ row.count }}</td>
+                <td>{{ row.real_price }}({{ row.price }})</td>
+                <td>{{ row.old_view_count }}</td>
+                <td>{{ row.create_datetime|date:"Y-m-d H:i:s" }}</td>
+                <td>{{ row.get_status_display }}</td>
+                {% if row.status == 1 %}
+                    <td><a href="{% url 'order_cancel' pk=row.id %}" class="btn btn-xs btn-danger">撤单</a></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <ul class="pagination">
+        {{ pager.html }}
+    </ul>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+        setTimeout(function () {
+            $(".top-message-error").addClass('hide')
+        }, 5000)
+    </script>
+{% endblock %}

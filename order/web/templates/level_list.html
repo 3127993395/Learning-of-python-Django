@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% load permission %}
+
+{% block content %}
+    <div style="margin-bottom: 5px">
+        {% add_permission request 'level_add' %}
+    </div>
+    <div class="bs-example" data-example-id="bordered-table">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>标题</th>
+                <th>折扣</th>
+                {% if request|has_permission:"level_edit, level_delete" %}
+                    <th>操作</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in queryset %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.title }}</td>
+                    <td>{{ row.percent }}%</td>
+                    {% if request|has_permission:"level_edit, level_delete" %}
+                        <td>
+                            {% edit_permission request 'level_edit' pk=row.id %}
+                            {% delete_url_permission request 'level_delete' pk=row.id %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

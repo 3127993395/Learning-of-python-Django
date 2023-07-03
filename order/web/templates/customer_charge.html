@@ -1,0 +1,126 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load num_color %}
+
+{% block css %}
+    <style>
+        .error-message {
+            color: red;
+            position: absolute;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div style="margin-bottom: 5px" class="clearfix">
+        <button class="btn btn-success" id="btnAdd">
+            <span class="glyphicon glyphicon-plus-sign"></span>新建
+        </button>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>类型</th>
+            <th>金额</th>
+            <th>订单号</th>
+            <th>时间</th>
+            <th>其他</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in pager.queryset %}
+            <tr row-id="{{ row.id }}">
+                <td>{{ row.id }}</td>
+                <td>
+                    <span class="btn btn-xs btn-{{ row.charge_type|color }}">{{ row.get_charge_type_display }}</span>
+                </td>
+                <td>
+                    {{ row.amount }}
+                </td>
+                <td>
+                    {% if row.order_oid %}
+                        {{ row.order_oid }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>{{ row.create_datetime|date:"Y-m-d H:i:s" }}</td>
+                <td>
+                    {% if row.memo %}
+                        {{ row.memo }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <ul class="pagination">
+        {{ pager.html }}
+    </ul>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新建数据</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal" id="addForm">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{ field.label }}</label>
+                                <div class="col-sm-10" style="position: relative; margin-bottom: 25px">
+                                    {{ field }}
+                                    <span class="error-message">{{ field.errors.0 }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnAdddSubmit">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script>
+        $(function () {
+            $("#btnAdd").click(function () {
+                $('#addModal').modal('show');
+            });
+
+            $("#btnAdddSubmit").click(function () {
+                $('.error-message').empty();
+                $.ajax({
+                    url: '{% url 'customer_charge_add' pk=pk %}',
+                    type: "POST",
+                    data: $("#addForm").serialize(), {# 拿到数据 #}
+                    dataType: "JSON",
+                    success: function (res) {
+                        if (res.status) {
+                            window.location.reload();
+                        } else {
+                            $.each(res.detail, function (k, v) {
+                                $("#id_" + k).next().text(v[0]);
+                            })
+                        }
+                    }
+                })
+            })
+        });
+    </script>
+{% endblock %}

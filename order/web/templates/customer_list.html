@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load permission %}
+
+{% block content %}
+
+    {% include 'include/search_group.html' %}
+
+    <div style="margin-bottom: 5px" class="clearfix">
+
+        {% add_permission request 'customer_add' %}
+
+        <div class="right">
+            <form class="form-inline" method="get">
+                <div class="form-group">
+                    <input name="keyword" type="text" class="form-control" placeholder="请输入关键字">
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="bs-example" data-example-id="bordered-table">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>手机号</th>
+                <th>账户余额</th>
+                <th>级别</th>
+                <th>注册时间</th>
+                <th>交易记录</th>
+                <th>重置密码</th>
+                <th>创建者</th>
+                {% if request|has_permission:"customer_edit, customer_delete" %}
+                    <th>操作</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in queryset %}
+                <tr row-id="{{ row.id }}">
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.username }}</td>
+                    <td>{{ row.mobile }}</td>
+                    <td>{{ row.balance }}</td>
+                    <td>{{ row.level }}({{ row.level.percent }}%)</td>
+                    <td>{{ row.create_date|date:"Y-m-d H:i:s" }}</td>
+                    <td>
+                        <a href="{% url 'customer_charge' pk=row.id %}">交易记录</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'customer_reset' pk=row.id %}">重置密码</a>
+                    </td>
+                    <td>{{ row.creator }}</td>
+                    {% if request|has_permission:"customer_edit, customer_delete" %}
+                        <td>
+                            {% edit_permission request 'customer_edit' pk=row.id %}
+                            {% delete_permission request 'customer_delete' pk=row.id %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul class="pagination">
+            {{ pager_string }}
+        </ul>
+
+    </div>
+
+    {% include 'include/delete_modal.html' %}
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/delete_modal.js' %}"></script>
+    <script>
+        let DELETE_ID;
+        let DELETE_URL = "{% url 'customer_delete' %}"
+    </script>
+
+{% endblock %}

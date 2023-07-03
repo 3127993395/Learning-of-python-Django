@@ -1,0 +1,18 @@
+{% if search_group.get_row_list %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-filter" aria-hidden="true"></i> 快速筛选
+            </div>
+            <div class="panel-body">
+                <div class="search-group">
+                    {% for row in search_group.get_row_list %}
+                        <div class="row">
+                            {% for obj in row %}
+                                {{ obj|safe }}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}

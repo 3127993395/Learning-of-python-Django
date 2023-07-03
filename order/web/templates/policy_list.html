@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load permission %}
+
+{% block content %}
+    <div style="margin-bottom: 5px" class="clearfix">
+
+        {% add_permission request 'policy_add' %}
+
+    </div>
+    <div class="bs-example" data-example-id="bordered-table">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>数量</td>
+                <td>价格</td>
+                {% if request|has_permission:"policy_edit, policy_delete" %}
+                    <td>操作</td>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in pager.queryset %}
+                <tr row-id="{{ row.id }}">
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.count }}</td>
+                    <td>{{ row.price }}</td>
+                    {% if request|has_permission:"policy_edit, policy_delete" %}
+                        <td>
+                            {% edit_permission request 'policy_edit' pk=row.id %}
+                            {% delete_permission request 'policy_delete' pk=row.id %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <ul class="pagination">
+            {{ pager.html }}
+        </ul>
+    </div>
+
+    {% include 'include/delete_modal.html' %}
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/delete_modal.js' %}"></script>
+    <script>
+        let DELETE_ID;
+        let DELETE_URL = "{% url 'policy_delete' %}";
+    </script>
+
+{% endblock %}

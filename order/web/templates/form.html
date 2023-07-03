@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <form method="post" novalidate>
+        {% for field in form %}
+            {% csrf_token %}
+            <div class="form-group" style="position: relative; margin-bottom: 25px">
+                <label for="{{ field.id_for_label }}">{{ field.label }}
+                    {% if field.help_text %}
+                        <span style="font-weight: 400;color: #3c3c3c">({{ field.help_text }})</span>
+                    {% endif %}
+                </label>
+                {{ field }}
+            <span style="color: red; position: absolute">{{ field.errors.0 }}</span>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">保存</button>
+    </form>
+{% endblock %}
